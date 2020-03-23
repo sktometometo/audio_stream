@@ -5,6 +5,7 @@
         name="audio_stream_publisher"
         pkg="audio_stream"
         type="audio_stream_publisher.py"
+        output="screen"
         >
         <param name="~is_loop" value="true" />
         <param name="~filename" value="$(arg filename)" />
@@ -15,6 +16,7 @@
         name="audio_stream_player"
         pkg="audio_stream"
         type="audio_stream_player.py"
+        output="screen"
         >
         <remap from="~audio" to="audio_stream_publisher/audio" />
         <remap from="~info" to="audio_stream_publisher/info" />

@@ -43,13 +43,12 @@ def main():
     wave_framenum = wavefile.getnframes()
     wave_data = wavefile.readframes( wave_framenum )
 
-    infostr = \
+    infostr = (\
     '== Wave file info ==\n' +\
     'channels: {}\n' +\
     'sample size [byte]: {}\n' +\
     'sampling rate [hz]: {}\n' +\
-    'number of frames: {} ( {} secs )'
-    infostr.format( wave_channels, wave_width, wave_framerate, wave_framenum, wave_framenum*1.0/wave_framerate )
+    'number of frames: {} ( {} secs )').format( wave_channels, wave_width, wave_framerate, wave_framenum, wave_framenum*1.0/wave_framerate )
     rospy.loginfo( infostr )
 
     if wave_channels != 1 or not ( wave_width == 1 or wave_width == 2):

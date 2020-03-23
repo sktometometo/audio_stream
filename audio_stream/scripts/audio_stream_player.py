@@ -60,7 +60,7 @@ class AudioStreamPlayer:
                 self.stream.write(self.buffer.get())
         self.stream.stop_stream()
         self.stream.close()
-        self.p.close()
+        self.p.terminate()
 
 def main():
     a = AudioStreamPlayer()
