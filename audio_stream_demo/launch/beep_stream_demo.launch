@@ -1,0 +1,21 @@
+<launch>
+    <arg name="filename" default="$(find audio_stream_demo)/sound/amenoyoru.wav" />
+
+    <node 
+        name="beep_publisher"
+        pkg="audio_stream_demo"
+        type="beep_publisher.py"
+        output="screen"
+        >
+    </node>
+
+    <node 
+        name="audio_stream_player"
+        pkg="audio_stream"
+        type="audio_stream_player.py"
+        output="screen"
+        >
+        <remap from="~audio" to="beep_publisher/audio" />
+        <remap from="~info" to="beep_publisher/info" />
+    </node>
+</launch>
