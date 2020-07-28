@@ -1,0 +1,38 @@
+<launch>
+    <arg name="filename" default="$(find audio_stream_demo)/sound/amenoyoru.wav" />
+    <arg name="dst" default="alsasink"/>
+    <arg name="do_timestamp" default="false"/>
+
+    <node name="audio_capture" pkg="audio_capture" type="audio_capture" output="screen">
+        <param name="use_capture" value="true"/>
+        <param name="device" value=""/>
+        <param name="channels" value="1"/>
+        <param name="sample_rate" value="16000"/>
+        <param name="format" value="wave"/>
+        <param name="sample_format" value="S16LE"/>
+        <param name="src" value="$(arg filename)"/>
+    </node>
+
+    <node
+        name="audio_info_publisher"
+        pkg="audio_stream"
+        type="audio_info_publisher.py"
+        output="screen"
+        >
+        <param name="channels" value="1"/>
+        <param name="width" value="2"/>
+        <param name="sampling_rate" value="16000"/>
+
+        <remap from="~info" to="/info"/>
+    </node>
+
+    <node 
+        name="audio_stream_player"
+        pkg="audio_stream"
+        type="audio_stream_player.py"
+        output="screen"
+        >
+        <remap from="~audio" to="/audio" />
+        <remap from="~info" to="/info" />
+    </node>
+</launch>
