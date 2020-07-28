@@ -1,7 +1,7 @@
 <launch>
     <arg name="filename" default="$(find audio_stream_demo)/sound/amenoyoru.wav" />
     <arg name="dst" default="alsasink"/>
-    <arg name="do_timestamp" default="true"/>
+    <arg name="do_timestamp" default="false"/>
 
     <node 
         name="audio_stream_publisher"
@@ -13,7 +13,6 @@
         <param name="~filename" value="$(arg filename)" />
         <param name="~max_precede" value="0.1" />
         <param name="~use_audio_common" value="true" />
-        <param name="~buffer_size" value="360" />
 
         <remap from="~audio" to="audio" />
     </node>
@@ -21,6 +20,7 @@
     <node name="audio_play" pkg="audio_play" type="audio_play" output="screen">
         <param name="dst" value="$(arg dst)"/>
         <param name="do_timestamp" value="$(arg do_timestamp)"/>
+        <param name="format" value="wave"/>
     </node>
 
 </launch>
