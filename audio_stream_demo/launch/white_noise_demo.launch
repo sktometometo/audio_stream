@@ -1,0 +1,20 @@
+<launch>
+    <node 
+        name="white_noise_publisher"
+        pkg="audio_stream_demo"
+        type="white_noise_publisher.py"
+        output="screen"
+        >
+        <param name="~level" value="0.1" />
+    </node>
+
+    <node 
+        name="audio_stream_player"
+        pkg="audio_stream"
+        type="audio_stream_player.py"
+        output="screen"
+        >
+        <remap from="~audio" to="white_noise_publisher/audio" />
+        <remap from="~info" to="white_noise_publisher/info" />
+    </node>
+</launch>
